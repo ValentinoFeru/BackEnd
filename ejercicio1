@@ -1,0 +1,37 @@
+class Usuario {
+    constructor(nombre, apellido, pelicula, mascotas) {
+        (this.nombre = nombre),
+            (this.apellido = apellido),
+            (this.libros = pelicula || []),
+            (this.mascotas = mascotas || []);
+    }
+
+    getFullName() {
+        return `${this.nombre} ${this.apellido}`;
+    }
+
+    addMascota(mascota) {
+        this.mascotas.push(mascota);
+    }
+
+    countMascotas() {
+        return this.mascotas.length;
+    }
+
+    addFilm(nombre, director) {
+        this.pelicula.push({ nombre, director });
+    }
+
+    getFilmsNames() {
+        return this.pelicula.map(({ nombre }) => nombre).join(", ");
+    }
+}
+
+let usuario = new Usuario("Lautaro", "Demonte");
+console.log(`El nombre de usuario es: ${usuario.getFullName()}.`);
+usuario.addMascota("Gata");
+usuario.addMascota("Perro");
+console.log(`Este usuario tiene ${usuario.countMascotas()} mascotas.`);
+usuario.addFilm("El club de la pelea", "Martin Scorsese");
+usuario.addFilm("El hijo del diablo", "Quentin Tarantino");
+console.log(`Peliculas del usuario: ${usuario.getFilmsNames()}`);
