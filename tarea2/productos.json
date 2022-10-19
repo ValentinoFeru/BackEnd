@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "title": "Nike Air Vapormax",
+        "price": 6000,
+        "thumbnail": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.grid.com.ar%2Fzapatillas-nike-air-vapormax-moda-mujer-3160284%2Fp&psig=AOvVaw2RZdJFj7MC5tbVT0K1Qf3-&ust=1666291952711000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCNiJ5rH77PoCFQAAAAAdAAAAABAE"
+    },
+    {
+        "id": 2,
+        "title": "Nike Air Force",
+        "price": 2000,
+        "thumbnail": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.grid.com.ar%2Fzapatillas-nike-sportswear-air-force-1-moda-ninos-3069319%2Fp&psig=AOvVaw3MW_TklJkM_7hdCzEIb0Xe&ust=1666291934806000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCPiVsan77PoCFQAAAAAdAAAAABAE"
+    },
+    {
+        "id": 3,
+        "title": "Air Jordan 1",
+        "price": 4000,
+        "thumbnail": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsneakerhousearg.com%2Fsneakers-estas-son-las-air-jordan-1-que-llegan-a-la-argentina%2F&psig=AOvVaw3sB2o1xz5IBXCg8oirpWIy&ust=1666291883675000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCLiH6ZH77PoCFQAAAAAdAAAAABAZ"
+    },
+    {
+        "id": 4,
+        "title": "prueba",
+        "price": 150
+    }
+]
