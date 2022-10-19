@@ -1,37 +1,72 @@
-class Usuario {
-    constructor(nombre, apellido, pelicula, mascotas) {
-        (this.nombre = nombre),
-            (this.apellido = apellido),
-            (this.peliculas = pelicula || []),
-            (this.mascotas = mascotas || []);
+const fs = require('fs');
+
+class Contenedor {
+    constructor(archivo) {
+        this.archivo = archivo;
     }
 
-    getFullName() {
-        return `${this.nombre} ${this.apellido}`;
-    }
+    save = async (producto) => {
+        try {
 
-    addMascota(mascota) {
-        this.mascotas.push(mascota);
-    }
+            if (fs.existsSync(this.archivo)) {
 
-    countMascotas() {
-        return this.mascotas.length;
-    }
+                let info = await fs.promises.readFile(this.archivo, 'utf8');
+                let result = JSON.parse(info);
+                if (result.length > 0) {
+                    let lastId = result[result.length - 1].id+1
+                    let newProduct = {
+                        id: lastId,
+                        ...producto
+                    }
+                } else {
+                    let lastId = 1
+                    let newProduct = {
+                        id: lastId,
+                        ...producto
+                    }
+                    result.push(newProduct);
+                    await fs.promises.writeFile(this.archivo, JSON.stringify(result, null, 2))
+                    return lastId;
 
-    addFilm(nombre, director) {
-        this.pelicula.push({ nombre, director });
-    }
+                }
+            } else {
 
-    getFilmsNames() {
-        return this.pelicula.map(({ nombre }) => nombre).join(", ");
+                let newProduct = {
+                    id: 1,
+                    title: producto.title,
+                    price: producto.price,
+                    thumbnail: producto.thumbnail
+                }
+                await fs.promises.writeFile(this.archivo, JSON.stringify([newProduct], null, 2))
+                return 1;
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 }
 
-let usuario = new Usuario("Lautaro", "Demonte");
-console.log(`El nombre de usuario es: ${usuario.getFullName()}.`);
-usuario.addMascota("Gata");
-usuario.addMascota("Perro");
-console.log(`Este usuario tiene ${usuario.countMascotas()} mascotas.`);
-usuario.addFilm("El club de la pelea", "Martin Scorsese");
-usuario.addFilm("El hijo del diablo", "Quentin Tarantino");
-console.log(`Peliculas del usuario: ${usuario.getFilmsNames()}`);
+
+let contenedor = new Contenedor("productos.txt");
+
+let producto1 = {
+    title: "papitas",
+    price: 200,
+    thumbnail: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.recetas360.com%2Fcomo-hacer-patatas-fritas%2F&psig=AOvVaw3zpeD2ylgbXWd6s7cNbYr7&ust=1666283491694000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCMDEvu_b7PoCFQAAAAAdAAAAABAE"
+}
+
+let producto2 = {
+    title: "Nike Air Force",
+    price: 1100,
+    thumbnail: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.recetas360.com%2Fcomo-hacer-patatas-fritas%2F&psig=AOvVaw3zpeD2ylgbXWd6s7cNbYr7&ust=1666283491694000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCMDEvu_b7PoCFQAAAAAdAAAAABAE"
+}
+
+
+
+metodos = async () => {
+    console.log(await contenedor.save(producto1))
+    console.log(await contenedor.save(producto2))
+}
+
+metodos()
